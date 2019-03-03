@@ -7,17 +7,17 @@ module.exports = function getLoveTrianglesCount(preferences = []) {
     let pos=0;
     let value=0;
     let rez=0;
-    for (var i = 0; i < preferences.length; i++) {
-        pos=preferences[i]-1; 
+    preferences.forEach( (element, index) => {
+        pos=element-1;
         if (pos < preferences.length && pos>=0) {
             value=preferences[pos]; 
-            for (var j = 0; j < preferences.length; j++) {          
-                  if (preferences[j]===i+1) { 
-                      if (value===j+1) {numberTriangles++;}
-                  } 
-              }
+            preferences.forEach( (elem, inx) => {
+                if (elem===index+1) { 
+                    if (value===inx+1) numberTriangles++; 
+                }
+            });
         }
-    }
+    });
     rez=Math.floor(numberTriangles/3);
     return rez;
     };
